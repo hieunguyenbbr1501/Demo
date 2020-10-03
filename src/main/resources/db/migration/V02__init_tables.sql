@@ -182,7 +182,7 @@ ALTER TABLE `class`
 --
 -- Chỉ mục cho bảng `exercises`
 --
-ALTER TABLE `exercises`
+ALTER TABLE `excercises`
   ADD FOREIGN KEY (`lecture_id`) REFERENCES `lecture` (`id`);
 
 --
