@@ -1,0 +1,32 @@
+﻿@media only print {
+	#title{
+		display:flex;
+	}
+	.content {
+		display: none;
+	}
+	.box{
+		display: none;
+	}
+	#modal-list {
+		display: block;
+		width: 100%;
+		height: 1000px;
+	}
+	#studentTable_wrapper > div:nth-child(1){
+		display: none;
+	}
+	.no-print{
+		display: none !important;
+	}
+	.info {
+		display: flex;
+	}
+}
+@media only screen {
+	#title {
+		display: none;
+	}
+}
+
+

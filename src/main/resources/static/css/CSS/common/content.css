@@ -1,0 +1,195 @@
+﻿.grid {
+	position: absolute;
+	top: 100px;
+	left: 220px;
+	right: 0;
+	bottom: 0px;
+	padding: 8px;
+}
+
+	.grid .title-grid {
+		color: #27703A;
+		font-size: 25px;
+		line-height: 30px;
+	}
+
+	.grid .container {
+		position: absolute;
+		top: 38px;
+		bottom: 8px;
+		left: 8px;
+		right: 8px;
+		border: 1px solid #00803d;
+		box-shadow: 5px 5px #d9d9d9;
+	}
+
+		.grid .container .toolbar {
+			display: flex;
+			align-items: center;
+			height: 30px;
+			width: 100%;
+			position: absolute;
+			font-size: 13px;
+		}
+
+		.grid .container .content {
+			position: absolute;
+			top: 29px;
+			bottom: 30px;
+			left: 0;
+			right: -1px;
+			border-top: 1px solid #00803d;
+			border-bottom: 1px solid #00803d;
+			overflow-x: auto;
+		}
+
+/*Thanh toolbar top*/
+.toolbar.toolbar-top {
+	top: 0;
+	background-image: -webkit-linear-gradient(top,#f9f9f9,#e3e4e6);
+}
+	.toolbar.toolbar-top button{
+		border: 1px solid #d9d9d9;
+	}
+
+		.toolbar.toolbar-top button:hover {
+			background-color: #fff;
+			border: 1px solid #d9d9d9;
+		}
+
+.search {
+	position: absolute;
+	right: 15px;
+	display: flex;
+}
+
+.text-search {
+	height: 24px;
+	width: 75%;
+	padding: 0 5px;
+}
+
+.btn-search {
+	width: 24px;
+}
+
+button {
+	display: flex;
+	width: 70px;
+	margin: 0 5px;
+	padding: 2px;
+}
+/*Thanh toolbar paging*/
+.toolbar.toolbar-pagging {
+	bottom: 0;
+}
+
+.btn {
+	padding: 3px;
+	margin: 0 4px;
+	width: 30px;
+	height: 30px;
+	background-color: #fff;
+	border: none;
+}
+
+.page-number {
+	width: 35px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+
+.quantity-record {
+	position: absolute;
+	right: 8px;
+}
+/*Phần content*/
+.content table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+	.content table th {
+		position: sticky;
+		top: -1px;
+		border: 1px solid #d9d9d9;
+		padding: 5px 10px;
+		font-size: 14px;
+		font-weight: 400;
+		background-color: #ededed;
+	}
+
+	.content table td {
+		border: 1px solid #d9d9d9;
+		padding: 5px 10px;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		font-size: 13px;
+	}
+
+	.content table tbody tr:hover {
+		background-color: #9bc7e366 !important;
+	}
+
+	.content table tbody tr:nth-child(even) {
+		background-color: #fafafa;
+	}
+
+	.content table th:nth-child(1), .content table td:nth-child(1) {
+		width: 10%;
+		min-width: 100px;
+		max-width: 150px;
+	}
+
+	.content table th:nth-child(2), .content table td:nth-child(2) {
+		width: 20%;
+		min-width: 150px;
+		max-width: 200px;
+	}
+
+	.content table th:nth-child(3), .content table td:nth-child(3) {
+		width: 15%;
+		min-width: 115px;
+		max-width: 150px;
+	}
+
+	.content table th:nth-child(4), .content table td:nth-child(4) {
+		width: 10%;
+		min-width: 100px;
+		max-width: 150px;
+	}
+
+	.content table th:nth-child(5), .content table td:nth-child(5) {
+		width: 10%;
+		min-width: 100px;
+		max-width: 150px;
+	}
+
+	.content table th:nth-child(6), .content table td:nth-child(6) {
+		width: 10%;
+		min-width: 90px;
+		max-width: 100px;
+	}
+
+	.content table th:nth-child(7), .content table td:nth-child(7) {
+		width: 25%;
+		min-width: 150px;
+		max-width: 250px;
+	}
+
+.rowSelected {
+	background-color: #9bc7e366 !important;
+}
+
+.rows-selected {
+	background-color: #9bc7e366 !important;
+}

@@ -1,0 +1,16 @@
+﻿.sub-footer {
+	bottom: 45px;
+	position: absolute;
+	width: 100%;
+	background-color: #fff;
+	overflow: hidden;
+	border-color: #d0d0d0;
+	color: #404040;
+	font-size: 13px;
+	font-weight: 300;
+	height: 84px;
+}
+.table-sub-footer {
+	width: 100%;
+	margin-top: 10px;
+}	

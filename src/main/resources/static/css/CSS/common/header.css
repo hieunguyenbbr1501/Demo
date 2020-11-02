@@ -1,0 +1,115 @@
+﻿body {
+	margin: 0;
+}
+
+.header {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    min-width: 500px;
+    height: 90px;
+    align-items: center;
+    background-color: #fff;
+}
+
+	.header .header-logo-box {
+		width: 250px;
+		height: 80px;
+		display: inline-block;
+		padding: 5px;
+		padding-left: 0;
+		margin-left: 10px;
+		vertical-align: top;
+	}
+
+		.header .header-logo-box .header-logo {
+			background-image: url(../../Contents/images/logo-VNU.png);
+			width: 250px;
+			height: 76px;
+			background-repeat: no-repeat;
+			background-position: -15px -10px;
+			background-size: 251px;
+		}
+
+	.header .header-center {
+		margin: 0 10px 0 10px;
+		position: absolute;
+		left: calc(50% - 95px);
+	}
+
+        .header .header-center .header-text {
+            font-size: 28px;
+            background-color: #fff;
+            height: 76px;
+            color: #00803d;
+            line-height: 76px;
+        }
+
+	.header .header-right {
+		position: absolute;
+		right: 0;
+		justify-content: flex-end;
+		right: 30px;
+		width: 200px;
+		height: 80px;
+	}
+
+		.header .header-right .acount-info {
+			position: absolute;
+			top: 0;
+			right: 0;
+			left: 0;
+			height: 100%;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+		}
+
+.header-right .acount-info .icon-arrow:focus .account-action-box {
+	display: block;
+}
+
+.header-right .acount-info .account-avatar {
+	width: 28px;
+	height: 28px;
+	border-radius: 14px;
+	background-color: #fff;
+	background-image: url(/Contents/images/employeeImage.png);
+	vertical-align: middle;
+	background-position: center center;
+	background-repeat: no-repeat;
+	align-self: center;
+}
+
+.header .acount-info .account-name {
+	align-self: center;
+	padding: 0 5px;
+}
+
+.header .header-right .account-action-box {
+	display: none;
+	position: absolute;
+	background-color: #fff;
+	color: #000;
+	border: 1px solid #ccc;
+	z-index: 999;
+	top: 60px;
+	left: 0;
+	width: 180px;
+}
+
+.header .account-action-box .account-action-item {
+	padding: 8px;
+	display: flex;
+}
+
+	.header .account-action-box .account-action-item:hover {
+		background-color: #f3f3f3;
+		cursor: pointer;
+	}
+
+@media screen and (max-width: 700px) {
+	.header-logo {
+		width: 0;
+	}
+}

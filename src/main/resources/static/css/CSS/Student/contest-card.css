@@ -1,0 +1,39 @@
+﻿.infoStudent {
+	display: flex;
+	padding: 15px;
+	line-height: 25px;
+	font-size: 16px;
+}
+	.infoStudent .StudentName, .infoStudent  .StudentCode {
+		font-weight: 600;
+		font-size: 18px;
+	}
+.info-left{
+	width: 50%;
+}
+.info-right {
+	width: 50%;
+}
+@media screen  {
+	#title{
+		display: none;
+	}
+}
+@media only print {
+	#print {
+		display: none;
+	}
+	#examreg{
+		width: 500px;
+	}
+	#title {
+		display: block;
+	}
+	.box-header{
+		display: none;
+	}
+	.box {
+		border-top: 0;
+		margin-bottom: unset;
+	}
+}

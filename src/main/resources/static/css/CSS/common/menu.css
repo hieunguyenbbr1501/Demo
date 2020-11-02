@@ -1,0 +1,23 @@
+﻿.menu-left {
+	display: inline-block;
+	width: 220px;
+	background-color: #fafafa;
+	position: absolute;
+	top: 100px;
+	bottom: 0;
+}
+	.menu-left .menu-item {
+		width: 220px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		border: 1px solid #27703A;
+		border-bottom: none;
+		padding: 5px;
+	}
+		.menu-left .last-item {
+			border-bottom: 1px solid #27703A;
+		}
+.bg-menu-item {
+	background-color: #d9d9d9
+}
