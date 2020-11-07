@@ -6,6 +6,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class StudentController {
+    @GetMapping(value = "/")
+    public String redirect() {
+        return "redirect:/student";
+    }
     @GetMapping(value = "/student")
     public ModelAndView index() {
         ModelAndView mav = new ModelAndView();
