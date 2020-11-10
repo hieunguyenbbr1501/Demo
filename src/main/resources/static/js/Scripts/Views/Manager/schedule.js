@@ -7,12 +7,12 @@ const loadData = () => {
                                  <thead > \
                                     <tr> \
                                         <th>STT</th> \
-                                        <th>Kỳ thi</th> \
-                                        <th>Môn thi</th> \
-                                        <th>Ngày thi</th> \
-                                        <th>Giờ bắt đầu</th> \
-                                        <th>Giờ kết thúc</th> \
-                                        <th>Địa điểm</th> \
+                                        <th>Tên</th> \
+                                        <th>Chủ đề</th> \
+                                        <th>Giảng viên</th> \
+                                        <th>Học kỳ</th> \
+                                        <th>Ngày tạo</th> \
+                                        <th>Ngày sửa</th> \
                                     </tr> \
                                  </thead > \
                            </table >');
@@ -21,12 +21,12 @@ const loadData = () => {
             $.each(res, (index, item) => {
                 let tr = $('<tr> \
                                 <td>'+ (index + 1) + '</td> \
-                                <td>'+ item.ExamName + " " + item.ExamYear + '</td> \
-                                <td>'+ item.SubjectName + '</td> \
-                                <td>'+ item.StartTime.split('T')[0].toddmmyyyy() + '</td> \
-                                <td>'+ item.StartTime.split('T')[1].slice(0, 5) + '</td> \
-                                <td>'+ item.TimeToDo + '</td> \
-                                <td>'+ item.RoomName + " " + item.Place + '</td> \
+                                <td>'+ item.Name + '</td> \
+                                <td>'+ item.Subject + '</td> \
+                                <td>'+ item.Lecturer + '</td> \
+                                <td>'+ item.Semester + '</td> \
+                                <td>'+ item.Created + '</td> \
+                                <td>'+ item.Updated + '</td> \
                            </tr > ').data('ID', item.ScheduleID);
                 tbody.append(tr);
             });

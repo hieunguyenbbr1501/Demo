@@ -1,1 +1,1 @@
-﻿if (sessionStorage.getItem('accessToken') === null) window.location.href = "/views/login.html"
+﻿// if (sessionStorage.getItem('accessToken') === null) window.location.href = "/views/login.html"

@@ -8,7 +8,7 @@ const loadData = () => {
                                         <th>STT</th> \
                                         <th>Mã môn học</th> \
                                         <th>Tên môn học</th> \
-                                        <th>Số tín chỉ</th> \
+                                        <th>Major</th> \
                                     </tr> \
                                  </thead > \
                            </table >');
@@ -17,10 +17,10 @@ const loadData = () => {
             $.each(res, (index, item) => {
                 let tr = $('<tr> \
                                 <td>'+ (index + 1) + '</td> \
-                                <td>'+ item.SubjectCode + '</td> \
-                                <td>'+ item.SubjectName + '</td> \
-                                <td>'+ item.Credit + '</td> \
-                           </tr > ').data('ID', item.SubjectID);
+                                <td>'+ item.Code + '</td> \
+                                <td>'+ item.Name + '</td> \
+                                <td>'+ item.Major + '</td> \
+                           </tr > ').data('ID', item.Code);
                 tbody.append(tr);
             });
 

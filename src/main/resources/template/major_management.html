@@ -1,12 +1,10 @@
 <!doctype html>
-<html style="height: auto; min-height: 100%;" lang="vi" xmlns:th="http://www.thymeleaf.org">
+<html style="height: auto; min-height: 100%;" lang="vi">
 <head>
-<!--    <script th:src="@{/js/Scripts/common/testLogin.js}"></script>-->
-    <script src="../static/js/Scripts/common/testLogin.js"></script>
-
+    <script src="../../Scripts/common/testLogin.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Students</title>
+    <title>ExamReg</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -38,43 +36,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <link th:href="@{css/CSS/Manager/custom.css}" rel="stylesheet" />
 
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <!-- Google Font -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
     <style>
         .box-header button.btn.pull-right {
             margin-left: 5px;
         }
-
-        .true {
-            color: #fff;
-            background-color: #5cb85c;
-            font-size: 16px;
-            border-radius: 5px;
-            padding: 5px;
-            border-radius: 5px;
-        }
-
-        .false {
-            color: #fff;
-            background-color: #f00;
-            font-size: 16px;
-            border-radius: 5px;
-            padding: 5px;
-            border-radius: 5px;
-        }
     </style>
-
-    <link href="/CSS/Manager/custom.css" rel="stylesheet"/>
-
 </head>
 <!-- ADD THE CLASS fixed TO GET A FIXED HEADER AND SIDEBAR LAYOUT -->
 <!-- the fixed layout is not compatible with sidebar-mini -->
@@ -117,11 +83,10 @@
                                         <!-- start message -->
                                         <a href="#">
                                             <div class="pull-left">
-                                                <img src="/Contents/images/alien.png" class="img-circle"
-                                                     alt="User Image">
+                                                <img src="/Contents/images/alien.png" class="img-circle" alt="User Image">
                                             </div>
                                             <h4>
-                                                Supporting Team
+                                                Support Team
                                                 <small><i class="fa fa-clock-o"></i> 5 mins</small>
                                             </h4>
                                             <p>Why not buy a new awesome theme?</p>
@@ -173,9 +138,7 @@
                                                 <small class="pull-right">20%</small>
                                             </h3>
                                             <div class="progress xs">
-                                                <div class="progress-bar progress-bar-aqua" style="width: 20%"
-                                                     role="progressbar" aria-valuenow="20" aria-valuemin="0"
-                                                     aria-valuemax="100">
+                                                <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                                                     <span class="sr-only">20% Complete</span>
                                                 </div>
                                             </div>
@@ -204,6 +167,7 @@
                                     <span class="ManagerName">User</span>
                                 </p>
                             </li>
+
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
@@ -245,10 +209,10 @@
                     <div class="input-group">
                         <input type="text" name="q" class="form-control" placeholder="Tìm kiếm...">
                         <span class="input-group-btn">
-								<button type="submit" name="search" id="search-btn" class="btn btn-flat">
-									<i class="fa fa-search"></i>
-								</button>
-							</span>
+                                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
                     </div>
                 </form>
                 <!-- /.search form -->
@@ -258,28 +222,28 @@
 
                     <li>
                         <a href="/views/manager/exam.html">
-                            <i class="fa fa-server"></i> <span>Kỳ thi</span>
+                            <i class="fa fa-server"></i> <span>Học kỳ</span>
                             <span class="pull-right-container">
 
-								</span>
+                                </span>
                         </a>
 
                     </li>
                     <li>
                         <a href="/views/manager/schedule.html">
-                            <i class="fa fa-calendar"></i> <span>Ca thi</span>
+                            <i class="fa fa-calendar"></i> <span>Lớp học</span>
+
+                        </a>
+                    </li>
+
+                    <li class="active">
+                        <a href="/views/manager/room.html">
+                            <i class="fa fa-university"></i> <span>Major</span>
 
                         </a>
                     </li>
 
                     <li>
-                        <a href="/views/manager/room.html">
-                            <i class="fa fa-university"></i> <span>Phòng thi</span>
-
-                        </a>
-                    </li>
-                    <li class="header">QUẢN LÝ ĐÀO TẠO</li>
-                    <li class="active">
                         <a href="/views/manager/student.html">
                             <i class="fa fa-user"></i> <span>Học sinh</span>
 
@@ -292,11 +256,7 @@
                         </a>
                     </li>
                 </ul>
-            </section>
-            <div class="slimScrollBar"
-                 style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 568px;"></div>
-            <div class="slimScrollRail"
-                 style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+            </section><div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 568px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
         </div>
         <!-- /.sidebar -->
     </aside>
@@ -309,8 +269,6 @@
             <h1>ExamReg</h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-
-                <li class="active">Kỳ thi</li>
             </ol>
         </section>
 
@@ -322,53 +280,37 @@
             <div class="box" data-select2-id="12">
                 <!-- /.box-header -->
                 <div class="box-header">
-                    <h3 class="box-title">Danh sách học sinh</h3>
+                    <h3 class="box-title">Danh sách Major</h3>
                     <span class="pull-right-container">
-							<button type="button" class="btn bg-orange pull-right file-cus">
-								<input type="file" name="imageUpload" id="dsdk" class="hide" accept=".xls, .xlsx">
-								<i class="fa fa-upload" style="font-size: 12px;"></i> &nbsp;
-								<label for="dsdk" class="btn btn-file">
-									DSĐK
-								</label>
-							</button>
-
-							<button type="button" class="btn bg-purple pull-right file-cus">
-								<input type="file" name="imageUpload" id="DSSV" class="hide" accept=".xls, .xlsx">
-								<i class="fa fa-upload" style="font-size: 12px;"></i> &nbsp;
-								<label for="DSSV" class="btn btn-file">
-									DSSV
-								</label>
-							</button>
-							<button type="button" class="btn btn-danger pull-right delete" ref="student"
-                                    data-toggle="modal" data-target="#modal-delete" disabled="disabled">
-								<i class="fa fa-trash"></i> Xóa
-							</button>
-							<button type="button" class="btn btn-warning pull-right modify" data-toggle="modal"
-                                    data-target="#modal" disabled="disabled">
-								<i class="fa fa-edit"></i> Sửa
-							</button>
-							<button type="button" class="btn btn-success pull-right" data-toggle="modal"
-                                    data-target="#modal">
-								<i class="fa fa-plus"></i> Thêm
-							</button>
-						</span>
+                            <button type="button" class="btn btn-danger pull-right delete" ref="room" data-toggle="modal" data-target="#modal-delete" disabled="disabled">
+                                <i class="fa fa-trash"></i> Xóa
+                            </button>
+                            <button type="button" class="btn btn-warning pull-right modify" data-toggle="modal" data-target="#modal" disabled="disabled">
+                                <i class="fa fa-edit"></i> Sửa
+                            </button>
+                            <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal">
+                                <i class="fa fa-plus"></i> Thêm
+                            </button>
+                        </span>
                 </div>
-                <div class="box-body studentTable">
-                    <table id="subjectTable" class="table table-bordered table-striped">
+                <div class="box-body roomTable">
+                    <table id="roomTable" class="table table-bordered table-striped">
                         <thead>
                         <tr>
                             <th>STT</th>
                             <th>Name</th>
-                            <th>Code</th>
-                            <th>Major</th>
+                            <th>Description</th>
+                            <th>Created at</th>
+                            <th>Updated at</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>abc</td>
-                            <td>abc</td>
-                            <td>abc</td>
+                        <tr th:each="u, index : ${majors}" th:data-id="${u.id}">
+                            <td th:text="${index.count}"></td>
+                            <td th:text="${u.name}"></td>
+                            <td th:text="${u.description}"></td>
+                            <td th:text="${u.created}"></td>
+                            <td th:text="${u.updated}"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -376,67 +318,44 @@
                 <!-- /.box-body -->
             </div>
 
-            <div class="modal modal fade" id="modal-list">
+            <div class="modal fade" data-backdrop="static" id="modal">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
-                            <h4 class="modal-title">Danh sách môn học</h4>
-                        </div>
-                        <div class="modal-body subjectTable">
-                            <p>One fine body…</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Đóng</button>
-                            <button type="button" class="btn btn-primary save">Lưu</button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-
-            <div class="modal modal fade" id="modal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                            <h4 class="modal-title"></h4>
+                            <h4 class="modal-title">THÊM PHÒNG THI</h4>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label>Mã số sinh viên</label>
-                                <div class="form-control">
-                                    <input id="StudentCode" property="StudentCode" placeholder="">
-                                </div>
+                                <label>Tên chuyên ngành</label>
+                                <input property="name" class="form-control" />
                             </div>
                             <div class="form-group">
-                                <label>Họ tên sinh viên</label>
-                                <div class="form-control">
-                                    <input id="StudentName" property="SubjectID" placeholder="">
-                                </div>
+                                <label>Mô tả</label>
+                                <input property="description" class="form-control" />
                             </div>
-                            <div class="form-group">
-                                <label>Tên truy cập</label>
-                                <div class="form-control">
-                                    <input id="StudentUserName" readonly property="SubjectID" placeholder="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Mật khẩu</label>
-                                <div class="form-control">
-                                    <input id="StudentPass" type="password" property="SubjectID" placeholder=""
-                                           value="132456">
-                                </div>
-                            </div>
-                        </div>
+
+<!--                            <div class="form-group">-->
+<!--                                <label>Địa điểm</label>-->
+<!--                                <div class="form-control">-->
+<!--                                    <input property="Place" placeholder="Chọn hoặc thêm địa điểm">-->
+<!--                                    <button class="dropdown-toggle" data-toggle="dropdown" tabindex="-1">-->
+<!--                                        <i class="fa fa-caret-down"></i>-->
+<!--                                    </button>-->
+<!--                                    <ul class="dropdown-menu dropdown-menu-right roomList">-->
+<!--                                        <li><a href="#" class="dropdown-item">G2</a></li>-->
+<!--                                        <li><a href="#" class="dropdown-item">GĐ2</a></li>-->
+<!--                                        <li><a href="#" class="dropdown-item">G3</a></li>-->
+<!--                                        <li><a href="#" class="dropdown-item">GĐ3</a></li>-->
+<!--                                    </ul>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Đóng</button>
-                            <button type="button" id="save-student" class="btn btn-primary save">Lưu</button>
+                            <button type="button" class="btn btn-primary save">Lưu</button>
                         </div>
                     </div>
                     <!-- /.modal-content -->
@@ -451,14 +370,13 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
-                            <h4 class="modal-title">XÓA DỮ LIỆU HỌC SINH</h4>
+                            <h4 class="modal-title">XÓA DỮ LIỆU PHÒNG THI</h4>
                         </div>
                         <div class="modal-body">
-                            <h4>Bạn có muốn xóa dữ liệu học sinh này?</h4>
+                            <h4>Bạn có muốn xóa dữ liệu phòng thi này?</h4>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline pull-left save" data-dismiss="modal">Đồng ý
-                            </button>
+                            <button type="button" class="btn btn-outline pull-left save" data-dismiss="modal">Đồng ý</button>
                             <button type="button" class="btn btn-outline" data-dismiss="modal">Không</button>
                         </div>
 
@@ -497,7 +415,7 @@
 <script th:src="@{/js/Scripts/common/base.js}"></script>
 <script th:src="@{/js/Scripts/common/common.js}"></script>
 <script th:src="@{/js/Scripts/libraries/xlstojson/xlsx.full.min.js}"></script>
-<script th:src="@{/js/Scripts/Views/Manager/student.js}"></script>
+<script th:src="@{/js/Scripts/Views/Manager/room.js}"></script>
 
 </body>
 </html>
