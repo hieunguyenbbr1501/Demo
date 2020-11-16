@@ -1,32 +1,33 @@
 ﻿
 const loadData = () => {
-    debugger
-    ajaxJSON.get('/manager/student', undefined, true,
+    ajaxJSON.get('/student', undefined, true,
         (res) => {
             let table = $('<table id="studentTable" class="table table-bordered table-striped"> \
                                  <thead > \
                                     <tr> \
-                                        <th>STT</th> \
-                                        <th>Mã sinh viên</th> \
-                                        <th>Tên sinh viên</th> \
-                                        <th>Ngày sinh</th> \
-                                        <th>Email</th> \
-                                        <th>Chuyên ngành</th> \
-                                        <th>Ngày tạo</th> \
-                                        <th>Ngày sửa</th> \
+                                        <th>STT</th>\
+                                        <th>First Name</th>\
+                                        <th>Last Name</th>\
+                                        <th>Student code</th>\
+                                        <th>Email</th>\
+                                        <th>Phone</th>\
+                                        <th>Major</th>\
+                                        <th>Role</th>\
                                     </tr> \
                                  </thead > \
                            </table >');
             let tbody = $('<tbody></tbody>');
-
             $.each(res, (index, item) => {
                 let tr = $('<tr> \
                                 <td>'+ (index + 1) + '</td> \
-                                <td>'+ item.StudentCode + '</td> \
-                                <td>'+ item.StudentName + '</td> \
-                                <td>'+ item.StudentUserName + '</td> \
-                                <td>'+ item.StudentPass + '</td> \
-                           </tr > ').data('ID', item.StudentID);
+                                <td>'+ item.last_name + '</td> \
+                                <td>'+ item.first_name + '</td> \
+                                <td>'+ item.student_code + '</td> \
+                                <td>'+ item.email + '</td> \
+                                <td>'+ item.phone + '</td> \
+                                <td>'+ item.major_id + '</td> \
+                                <td>'+ item.role_id + '</td> \
+                           </tr > ').data('ID', item.id);
                 tbody.append(tr);
             });
 
@@ -57,7 +58,6 @@ const loadData = () => {
         });
 };
 
-//
 loadData();
 
 $(document).on('click', '#studentTable tbody tr', function () {
@@ -73,7 +73,9 @@ $(document).on('click', '#studentTable tbody tr', function () {
         $('button.btn.modify').attr('disabled', false); $('button.btn.delete').attr('disabled', false)
     }
 })
+
 var mode = 1
+
 $(document).on('click', 'button.btn.btn-success.pull-right', function () {
     mode = 1;
     $('#modal .modal-title').text('THÊM SINH VIÊN');
@@ -82,16 +84,15 @@ $(document).on('click', 'button.btn.btn-success.pull-right', function () {
     $('#StudentCode').attr('readonly', false)
 })
 $(document).on('click', 'button.btn.btn-warning.pull-right', function () {
-    var ID = $('tr.Selected').data('ID');
-
+    var ID = $('tr.Selected').data('id');
+    sessionStorage.setItem('ID', ID);
+    $('#StudentCode').attr('readonly', true)
+    mode = 2;
     $('#modal .modal-title').text('CHỈNH SỬA THÔNG TIN SINH VIÊN');
     $('.modal-body [property]').each((index, item) => {
         $(item).val($('tr.Selected').children()[index + 1].innerText)
     })
 
-    mode = 2;
-    sessionStorage.setItem('ID', ID);
-    $('#StudentCode').attr('readonly', true)
 })
 $(document).on('keyup', '#StudentCode', function () {
     $('#StudentUserName').val($('#StudentCode').val())
@@ -104,18 +105,28 @@ $(document).on('click', '#save-student', function () {
     let flag = checkDataInputModal();
 
     if (flag === 1) {
-
-        var studentCode = $('#StudentCode').val();
-        var studentName = $('#StudentName').val();
-        var studentPass = $('#StudentPass').val();
-        var url = '/manager/student';
+        var student_code = $('#student_code').val();
+        var last_name = $('#last_name').val();
+        var first_name = $('#first_name').val();
+        var email = $('#email').val();
+        var phone = $('#phone').val();
+        var major_id = $('#major_id').val();
+        var role_id = $('#role_id').val();
+        var url = '/student';
         if (mode == 2) {
-            debugger
-            var StudentID = $('tr.Selected').data('ID');
-            var pram = [];
-            pram.push(studentName);
-            pram.push(studentPass);
-            pram.push(StudentID)
+            var StudentID = sessionStorage.getItem('ID');
+            var pram = {
+                id: StudentID,
+                student_code : student_code,
+                last_name: last_name,
+                first_name: first_name,
+                email: email,
+                phone:phone,
+                major_id: major_id,
+                role_id:role_id
+            };
+            console.log('Sua')
+            console.log( pram);
             ajaxJSON.put(url, pram, true,
                 function (data) {
                     loadData();
@@ -123,12 +134,18 @@ $(document).on('click', '#save-student', function () {
                     $('#modal > div > div > div.modal-footer > button.btn.btn-default.pull-left').trigger('click')
                 })
         } else {
-            var pram = [];
-            pram.push(studentCode);
-            pram.push(studentName);
-            pram.push(studentPass);
-            debugger
-            ajaxJSON.post(url, pram, true,
+            var pram1 = {
+                student_code : student_code,
+                last_name: last_name,
+                first_name: first_name,
+                email: email,
+                phone:phone,
+                major_id: major_id,
+                role_id:role_id
+            };
+            console.log('Them')
+            console.log(pram1);
+            ajaxJSON.post(url, pram1, true,
                 function (data) {
                     if (data == '0') {
                         $('#StudentCode').val('')

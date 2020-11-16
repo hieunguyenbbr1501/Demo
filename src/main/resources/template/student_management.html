@@ -340,7 +340,34 @@
 							</button>
 						</span>
                 </div>
-                <div class="box-body studentTable"></div>
+                <div class="box-body studentTable">
+                    <table id="studentTable" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Student code</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Major</th>
+                            <th>Role</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="u, index:${students}" th:data-ID="${u.id}">
+                            <td th:text="${index.count}"></td>
+                            <td th:text="${u.first_name}"></td>
+                            <td th:text="${u.last_name}"></td>
+                            <td th:text="${u.student_code}"></td>
+                            <td th:text="${u.email}"></td>
+                            <td th:text="${u.phone}"></td>
+                            <td th:text="${u.major_id}"></td>
+                            <td th:text="${u.role_id}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <!-- /.box-body -->
             </div>
 
@@ -377,28 +404,53 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label>Mã số sinh viên</label>
+                                <label>Student Code</label>
                                 <div class="form-control">
-                                    <input id="StudentCode" property="StudentCode" placeholder="">
+                                    <input id="student_code" property="student_code" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Họ tên sinh viên</label>
+                                <label>First Name</label>
                                 <div class="form-control">
-                                    <input id="StudentName" property="SubjectID" placeholder="">
+                                    <input id="first_name" property="first_name" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Tên truy cập</label>
+                                <label>Last Name</label>
                                 <div class="form-control">
-                                    <input id="StudentUserName" readonly property="SubjectID" placeholder="">
+                                    <input id="last_name" property="last_name" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Mật khẩu</label>
+                                <label>Email</label>
                                 <div class="form-control">
-                                    <input id="StudentPass" type="password" property="SubjectID" placeholder=""
-                                           value="132456">
+                                    <input id="email" property="email" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <div class="form-control">
+                                    <input id="phone"  property="phone" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>PassWord</label>
+                                <div class="form-control">
+                                    <input id="password" property="password" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Major Id</label>
+                                <div class="form-control">
+                                    <input id="major_id" property="major_id" placeholder=""
+                                           value="1">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Role Id</label>
+                                <div class="form-control">
+                                    <input id="role_id" property="role_id" placeholder=""
+                                           value="2">
                                 </div>
                             </div>
                         </div>
