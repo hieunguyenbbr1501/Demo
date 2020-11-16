@@ -29,8 +29,20 @@ public class MajorController {
     @ResponseBody
     public Major update(@RequestBody Major major) {
         Major old = majorService.findById(major.getId());
-        old.setName(major.getName());
-        old.setDescription(major.getDescription());
-        return majorService.addOrUpdate(old);
+        if (old != null) {
+            old.setName(major.getName());
+            old.setDescription(major.getDescription());
+            return majorService.addOrUpdate(old);
+        }
+        return null;
+    }
+
+    @PostMapping(value = "/major/insert")
+    @ResponseBody
+    public Major insert(@RequestBody Major major) {
+        if (major != null) {
+            return majorService.addOrUpdate(major);
+        }
+        return null;
     }
 }

@@ -2,17 +2,7 @@
 const loadData = () => {
     ajaxJSON.get('/major', undefined, true,
         (res) => {
-            let table = $('<table id="roomTable" class="table table-bordered table-striped"> \
-                                 <thead > \
-                                    <tr> \
-                                        <th>STT</th> \
-                                        <th>Tên phòng thi</th> \
-                                        <th>Số lượng chỗ ngồi</th> \
-                                        <th>Địa điểm</th> \
-                                    </tr> \
-                                 </thead > \
-                           </table >');
-            let tbody = $('<tbody></tbody>');
+
 
             $.each(res, (index, item) => {
                 console.log(item);
@@ -26,9 +16,6 @@ const loadData = () => {
             });
 
             table.append(tbody);
-
-            $('.roomTable').empty();
-            $('.roomTable').append(table);
 
             $('#roomTable').DataTable({
                 "language": {
@@ -77,7 +64,6 @@ $(document).on('click', 'button.btn.btn-warning.pull-right', function () {
     $('.modal-body [property]').each((index, item) => {
         $(item).val($('tr.Selected').children()[index + 1].innerText)
     })
-
     mode = 2;
     sessionStorage.setItem('ID', ID);
 })
@@ -95,17 +81,16 @@ $(document).on('click', '#modal .save', function () {
     let flag = checkDataInputModal();
     if (flag === 1) {
         if (mode === 1) {
-            let ref = {};
+            let major = {
+                name: null,
+                description: null,
+            };
             $('[property]').each((index, item) => {
-                ref[$(item).attr('property')] = $(item).val();
+                major[$(item).attr('property')] = $(item).val();
             });
-            ajaxJSON.post('/manager', ref, true,
+            ajaxJSON.post('/major/insert', major, true,
                 (res) => {
-                    console.log('done');
-                    loadData();
-                    clearDataModal();
-                    btn.siblings().click();
-                    localStorage.clear();
+                    window.location.replace('/major');
                 });
         }
         else if (mode === 2) {
