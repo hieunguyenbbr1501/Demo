@@ -1,7 +1,6 @@
 <!doctype html>
 <html style="height: auto; min-height: 100%;" lang="vi">
 <head>
-    <script src="../../Scripts/common/testLogin.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>ExamReg</title>
@@ -35,12 +34,31 @@
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <link th:href="@{css/CSS/Manager/custom.css}" rel="stylesheet" />
-
     <style>
         .box-header button.btn.pull-right {
             margin-left: 5px;
         }
+
+        .true {
+            color: #fff;
+            background-color: #5cb85c;
+            font-size: 16px;
+            border-radius: 5px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .false {
+            color: #fff;
+            background-color: #f00;
+            font-size: 16px;
+            border-radius: 5px;
+            padding: 5px;
+            border-radius: 5px;
+        }
     </style>
+
+
 </head>
 <!-- ADD THE CLASS fixed TO GET A FIXED HEADER AND SIDEBAR LAYOUT -->
 <!-- the fixed layout is not compatible with sidebar-mini -->
@@ -50,7 +68,7 @@
 
     <header class="main-header">
         <!-- Logo -->
-        <a # class="logo">
+        <a class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>ABC</b></span>
             <!-- logo for regular state and mobile devices -->
@@ -167,7 +185,6 @@
                                     <span class="ManagerName">User</span>
                                 </p>
                             </li>
-
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
@@ -236,7 +253,7 @@
                         </a>
                     </li>
 
-                    <li class="active">
+                    <li>
                         <a href="/views/manager/room.html">
                             <i class="fa fa-university"></i> <span>Major</span>
 
@@ -249,7 +266,7 @@
 
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="/views/manager/subject.html">
                             <i class="fa fa-book"></i> <span>Môn học</span>
 
@@ -269,6 +286,7 @@
             <h1>ExamReg</h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+
             </ol>
         </section>
 
@@ -280,9 +298,16 @@
             <div class="box" data-select2-id="12">
                 <!-- /.box-header -->
                 <div class="box-header">
-                    <h3 class="box-title">Danh sách Major</h3>
+                    <h3 class="box-title">Danh sách môn học</h3>
                     <span class="pull-right-container">
-                            <button type="button" class="btn btn-danger pull-right delete" ref="room" data-toggle="modal" data-target="#modal-delete" disabled="disabled">
+                            <button type="button" class="btn bg-purple pull-right file-cus">
+                                <input type="file" name="imageUpload" id="DSMH" class="hide" accept=".xls, .xlsx">
+                                <i class="fa fa-upload" style="font-size: 12px;"></i> &nbsp;
+                                <label for="DSMH" class="btn btn-file">
+                                    DSMH
+                                </label>
+                            </button>
+                            <button type="button" class="btn btn-danger pull-right delete" ref="subject" data-toggle="modal" data-target="#modal-delete" disabled="disabled">
                                 <i class="fa fa-trash"></i> Xóa
                             </button>
                             <button type="button" class="btn btn-warning pull-right modify" data-toggle="modal" data-target="#modal" disabled="disabled">
@@ -293,24 +318,22 @@
                             </button>
                         </span>
                 </div>
-                <div class="box-body roomTable">
-                    <table id="roomTable" class="table table-bordered table-striped">
+                <div class="box-body subjectTable">
+                    <table id="subjectTable" class="table table-bordered table-striped">
                         <thead>
                         <tr>
                             <th>STT</th>
                             <th>Name</th>
-                            <th>Description</th>
-                            <th>Created at</th>
-                            <th>Updated at</th>
+                            <th>Code</th>
+                            <th>Major</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="u, index : ${majors}" th:data-id="${u.id}">
+                        <tr th:each="u, index:${subjects}">
                             <td th:text="${index.count}"></td>
                             <td th:text="${u.name}"></td>
-                            <td th:text="${u.description}"></td>
-                            <td th:text="${u.created}"></td>
-                            <td th:text="${u.updated}"></td>
+                            <td th:text="${u.subject_code}"></td>
+                            <td th:text="${u.major.name}"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -318,44 +341,38 @@
                 <!-- /.box-body -->
             </div>
 
-            <div class="modal fade" data-backdrop="static" id="modal">
+            <div class="modal modal fade" id="modal">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
-                            <h4 class="modal-title">THÊM PHÒNG THI</h4>
+                            <h4 class="modal-title">Success Modal</h4>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label>Tên chuyên ngành</label>
-                                <input property="name" class="form-control" />
+                                <label>Mã môn học</label>
+                                <div class="form-control">
+                                    <input id="SubjectCode" property="StudentCode" placeholder="">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label>Mô tả</label>
-                                <input property="description" class="form-control" />
+                                <label>Tên môn học</label>
+                                <div class="form-control">
+                                    <input id="SubjectName" property="StudentCode" placeholder="">
+                                </div>
                             </div>
-
-<!--                            <div class="form-group">-->
-<!--                                <label>Địa điểm</label>-->
-<!--                                <div class="form-control">-->
-<!--                                    <input property="Place" placeholder="Chọn hoặc thêm địa điểm">-->
-<!--                                    <button class="dropdown-toggle" data-toggle="dropdown" tabindex="-1">-->
-<!--                                        <i class="fa fa-caret-down"></i>-->
-<!--                                    </button>-->
-<!--                                    <ul class="dropdown-menu dropdown-menu-right roomList">-->
-<!--                                        <li><a href="#" class="dropdown-item">G2</a></li>-->
-<!--                                        <li><a href="#" class="dropdown-item">GĐ2</a></li>-->
-<!--                                        <li><a href="#" class="dropdown-item">G3</a></li>-->
-<!--                                        <li><a href="#" class="dropdown-item">GĐ3</a></li>-->
-<!--                                    </ul>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                            <div class="form-group">
+                                <label>Số tín chỉ</label>
+                                <div class="form-control">
+                                    <input id="Credit" property="StudentCode" placeholder="">
+                                </div>
+                            </div>
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Đóng</button>
-                            <button type="button" class="btn btn-primary save">Lưu</button>
+                            <button type="button" id="save-subject" class="btn btn-primary save">Lưu</button>
                         </div>
                     </div>
                     <!-- /.modal-content -->
@@ -370,10 +387,10 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
-                            <h4 class="modal-title">XÓA DỮ LIỆU PHÒNG THI</h4>
+                            <h4 class="modal-title">XÓA DỮ LIỆU MÔN HỌC</h4>
                         </div>
                         <div class="modal-body">
-                            <h4>Bạn có muốn xóa dữ liệu phòng thi này?</h4>
+                            <h4>Bạn có muốn xóa dữ liệu môn học này?</h4>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline pull-left save" data-dismiss="modal">Đồng ý</button>
@@ -392,8 +409,7 @@
     <!-- /.content-wrapper -->
 
 
-</div>
-<!-- ./wrapper -->
+</div><!-- ./wrapper -->
 <!-- jQuery 3 -->
 <script th:src="@{/js/Template/bower_components/jquery/dist/jquery.min.js}"></script>
 <!-- Bootstrap 3.3.7 -->
@@ -415,7 +431,7 @@
 <script th:src="@{/js/Scripts/common/base.js}"></script>
 <script th:src="@{/js/Scripts/common/common.js}"></script>
 <script th:src="@{/js/Scripts/libraries/xlstojson/xlsx.full.min.js}"></script>
-<script th:src="@{/js/Scripts/Views/Manager/major.js}"></script>
+<script th:src="@{/js/Scripts/Views/Manager/subject.js}"></script>
 
 </body>
 </html>
