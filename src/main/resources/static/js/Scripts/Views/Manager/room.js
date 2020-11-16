@@ -1,6 +1,6 @@
-﻿
+﻿console.log("???");
 const loadData = () => {
-    ajaxJSON.get('/manager/room', undefined, true,
+    ajaxJSON.get('/major', undefined, true,
         (res) => {
             let table = $('<table id="roomTable" class="table table-bordered table-striped"> \
                                  <thead > \
@@ -15,13 +15,14 @@ const loadData = () => {
             let tbody = $('<tbody></tbody>');
 
             $.each(res, (index, item) => {
-                let tr = $('<tr> \
-                                <td>'+ (index + 1) + '</td> \
-                                <td>'+ item.RoomName + '</td> \
-                                <td>'+ item.QuantitySlot + '</td> \
-                                <td>'+ item.Place + '</td> \
-                           </tr > ').data('ID', item.RoomID);
-                tbody.append(tr);
+                console.log(item);
+                // let tr = $('<tr> \
+                //                 <td>'+ (index + 1) + '</td> \
+                //                 <td>'+ item.RoomName + '</td> \
+                //                 <td>'+ item.QuantitySlot + '</td> \
+                //                 <td>'+ item.Place + '</td> \
+                //            </tr > ').data('ID', item.RoomID);
+                // tbody.append(tr);
             });
 
             table.append(tbody);
@@ -48,7 +49,7 @@ const loadData = () => {
                     }
                 }
             });
-           
+
         });
 };
 
@@ -69,10 +70,10 @@ $(document).on('click', '#roomTable tbody tr', function () {
 })
 
 $(document).on('click', 'button.btn.btn-warning.pull-right', function () {
-    var ID = $('tr.Selected').data('ID');
+    var ID = $('tr.Selected').data("id");
 
     $('#modal .modal-title').text('CHỈNH SỬA PHÒNG THI');
-
+    $
     $('.modal-body [property]').each((index, item) => {
         $(item).val($('tr.Selected').children()[index + 1].innerText)
     })
@@ -92,15 +93,13 @@ $(document).on('click', '#modal .save', function () {
     let btn = $(this);
 
     let flag = checkDataInputModal();
-
     if (flag === 1) {
         if (mode === 1) {
-            debugger
             let ref = {};
             $('[property]').each((index, item) => {
                 ref[$(item).attr('property')] = $(item).val();
             });
-            ajaxJSON.post('/manager/room', ref, true,
+            ajaxJSON.post('/manager', ref, true,
                 (res) => {
                     console.log('done');
                     loadData();
@@ -110,19 +109,40 @@ $(document).on('click', '#modal .save', function () {
                 });
         }
         else if (mode === 2) {
-            debugger
-            let ref = {};
+            let major = {
+                id: null,
+                name: null,
+                description: null,
+            };
             $('[property]').each((index, item) => {
-                ref[$(item).attr('property')] = $(item).val();
+                major[$(item).attr('property')] = $(item).val();
             });
-            var RoomID = $('tr.Selected').data('ID');
-            ref['RoomID'] = RoomID
-            ajaxJSON.put('/manager/room', ref, true,
+            var RoomID = $('tr.Selected').data('id');
+            major['id'] = RoomID
+            console.log(major);
+            ajaxJSON.put('/major/update', major, true,
                 function (data) {
-                    loadData();
-                    clearDataModal();
-                    $('#modal > div > div > div.modal-footer > button.btn.btn-default.pull-left').trigger('click')
+                    window.location.replace('/major');
                 })
+
+            // $.ajax({
+            //     url: '/major/update',
+            //     type: "PUT",
+            //     contentType: 'text/html;charset=UTF-8',
+            //     dataType: "text/html",
+            //     encoding: "UTF-8",
+            //     data: {
+            //         major
+            //     },
+            //     success: function (data) {
+            //         // some task
+            //         window.location.replace('/major');
+            //     }
+            //     , fail: function () {
+            //         // some task
+            //     }
+            // })
+
         }
     }
     else {

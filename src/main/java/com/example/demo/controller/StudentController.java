@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,22 +29,15 @@ public class StudentController {
     }
 
     @PostMapping(value = "/student")
-    public String updateUser(@RequestBody User user) {
-        System.out.println(user.getEmail() + " "
-                +user.getRole_id() + " "
-                + user.getMajor_id() + " "
-                + user.getStudent_code() + " "
-                + user.getPhone() + " "
-                + user.getPassword() + " " +
-                user.getFirst_name() + " "+
-                user.getLast_name());
-        //userService.addOrUpdateUser(user);
-        return "redirect:/student";
+    @ResponseBody
+    public User add(@RequestBody User user) {
+        return userService.addOrUpdateUser(user);
     }
     @DeleteMapping(value = "/student/{id}")
-    public String deleteUser(@PathVariable(value = "id")long id) {
+    public ResponseEntity delete(@PathVariable(value = "id")long id) {
+        System.out.println("delete: " + id);
         userService.deleteUser(id);
-        return "redirect:/";
+        return ResponseEntity.ok().build();
     }
     @PutMapping(value = "/student")
     @ResponseBody

@@ -58,6 +58,9 @@
             padding: 5px;
             border-radius: 5px;
         }
+        .display{
+            display: none;
+        }
     </style>
 
     <link href="/CSS/Manager/custom.css" rel="stylesheet"/>
@@ -345,13 +348,14 @@
                         <thead>
                         <tr>
                             <th>STT</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Student code</th>
+                            <th>Họ</th>
+                            <th>Tên</th>
+                            <th>Mã sinh viên</th>
                             <th>Email</th>
-                            <th>Phone</th>
-                            <th>Major</th>
-                            <th>Role</th>
+                            <th>Số điện thoại</th>
+                            <th>Mật Khẩu</th>
+                            <th>Chuyên ngành</th>
+                            <th>Quyền</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -362,6 +366,7 @@
                             <td th:text="${u.student_code}"></td>
                             <td th:text="${u.email}"></td>
                             <td th:text="${u.phone}"></td>
+                            <td th:text="${u.password}"></td>
                             <td th:text="${u.major_id}"></td>
                             <td th:text="${u.role_id}"></td>
                         </tr>
@@ -403,22 +408,23 @@
                             <h4 class="modal-title"></h4>
                         </div>
                         <div class="modal-body">
+
                             <div class="form-group">
-                                <label>Student Code</label>
-                                <div class="form-control">
-                                    <input id="student_code" property="student_code" placeholder="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>First Name</label>
+                                <label>Họ</label>
                                 <div class="form-control">
                                     <input id="first_name" property="first_name" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Last Name</label>
+                                <label>Tên</label>
                                 <div class="form-control">
                                     <input id="last_name" property="last_name" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Mã sinh viên</label>
+                                <div class="form-control">
+                                    <input id="student_code" property="student_code" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -428,29 +434,27 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Phone</label>
+                                <label>Số điện thoại</label>
                                 <div class="form-control">
                                     <input id="phone"  property="phone" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>PassWord</label>
+                                <label>Mật khẩu</label>
                                 <div class="form-control">
                                     <input id="password" property="password" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Major Id</label>
+                                <label>Chuyên ngành</label>
                                 <div class="form-control">
-                                    <input id="major_id" property="major_id" placeholder=""
-                                           value="1">
+                                    <input id="major_id" property="major_id" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Role Id</label>
+                                <label>Quyền</label>
                                 <div class="form-control">
-                                    <input id="role_id" property="role_id" placeholder=""
-                                           value="2">
+                                    <input id="role_id" property="role_id" placeholder="">
                                 </div>
                             </div>
                         </div>
@@ -477,7 +481,7 @@
                             <h4>Bạn có muốn xóa dữ liệu học sinh này?</h4>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline pull-left save" data-dismiss="modal">Đồng ý
+                            <button type="button" id="delete-student" class="btn btn-outline pull-left save" data-dismiss="modal">Đồng ý
                             </button>
                             <button type="button" class="btn btn-outline" data-dismiss="modal">Không</button>
                         </div>

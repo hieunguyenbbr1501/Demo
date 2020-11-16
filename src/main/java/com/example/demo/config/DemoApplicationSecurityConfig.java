@@ -19,4 +19,9 @@ public class DemoApplicationSecurityConfig extends WebSecurityConfigurerAdapter 
                 .roles("USER");
     }
 
+    @Override
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.csrf().disable();
+    }
+
 }

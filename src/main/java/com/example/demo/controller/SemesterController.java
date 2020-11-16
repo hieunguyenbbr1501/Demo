@@ -3,10 +3,10 @@ package com.example.demo.controller;
 import com.example.demo.entity.Semester;
 import com.example.demo.service.SemesterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -19,14 +19,27 @@ public class SemesterController {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("semester_management");
         model.addAttribute("semesters", semesterService.getAllSemester() );
-        model.addAttribute("new_semester", new Semester() );
         return new ModelAndView("semester_management");
     }
 
-    @GetMapping(value = "/semester/delete/{id}")
-    public String deleteSemester(@PathVariable(value = "id")long id) {
-        System.out.println(id);
+    @PostMapping(value = "/semester")
+    @ResponseBody
+    public Semester add(@RequestBody Semester semester) {
+        return semesterService.addOrUpdateSemester(semester);
+    }
+    @DeleteMapping(value = "/semester/{id}")
+    public ResponseEntity delete(@PathVariable(value = "id")long id) {
+        System.out.println("delete: " + id);
         semesterService.deleteSemester(id);
-        return "redirect:/semester";
+        return ResponseEntity.ok().build();
+    }
+    @PutMapping(value = "/semester")
+    @ResponseBody
+    public Semester update(@RequestBody Semester semester) {
+        Semester old = semesterService.getSemesterById(semester.getId());
+        old.setName(semester.getName());
+        old.setDescription(semester.getDescription());
+        old.setYear(semester.getYear());
+        return semesterService.addOrUpdateSemester(old);
     }
 }
