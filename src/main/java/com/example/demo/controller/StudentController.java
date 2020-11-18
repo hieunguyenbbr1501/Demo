@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.Major;
+import com.example.demo.service.MajorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,8 @@ public class StudentController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private MajorService majorService;
 
     @GetMapping(value = "/")
     public String redirect() {
@@ -28,24 +32,25 @@ public class StudentController {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("student_management");
         List<User> students = userService.getAllStudents();
+        List<Major> majors = majorService.getALlMajors();
         model.addAttribute("students", students);
+        model.addAttribute("majors", majors);
         return new ModelAndView("student_management");
     }
 
-    @PostMapping(value = "/student")
+    @PostMapping(value = "/manager/student")
     @ResponseBody
     public User add(@RequestBody User user) {
         return userService.addOrUpdateUser(user);
     }
 
-    @DeleteMapping(value = "/student/{id}")
+    @DeleteMapping(value = "/manager/student/{id}")
     public ResponseEntity delete(@PathVariable(value = "id") long id) {
-        System.out.println("delete: " + id);
         userService.deleteUser(id);
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping(value = "/student")
+    @PutMapping(value = "/manager/student")
     @ResponseBody
     public User update(@RequestBody User user) {
         User old = userService.getUserById(user.getId());

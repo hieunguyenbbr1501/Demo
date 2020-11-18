@@ -78,7 +78,7 @@ var mode = 1
 
 $(document).on('click', 'button.btn.btn-success.pull-right', function () {
     mode = 1;
-    $('#modal .modal-title').text('THÊM SINH VIÊN');
+    $('#modal .modal-title').text('THÊM HỌC KỲ');
     clearDataModal();
     $('#StudentCode').removeAttr('placeholder');
     $('#StudentCode').attr('readonly', false)
@@ -88,7 +88,7 @@ $(document).on('click', 'button.btn.btn-warning.pull-right', function () {
     sessionStorage.setItem('ID', ID);
     $('#StudentCode').attr('readonly', true)
     mode = 2;
-    $('#modal .modal-title').text('CHỈNH SỬA THÔNG TIN SINH VIÊN');
+    $('#modal .modal-title').text('CHỈNH SỬA THÔNG TIN HỌC KỲ');
     $('.modal-body [property]').each((index, item) => {
         $(item).val($('tr.Selected').children()[index + 1].innerText)
     })
@@ -112,7 +112,7 @@ $(document).on('click', '#save-student', function () {
         var name = $('#name').val();
         var description = $('#description').val();
         var year = $('#year').val();
-        var url = '/semester';
+        var url = '/manager/semester';
         if (mode == 2) {
             var ID = sessionStorage.getItem('ID');
             var pram = {
@@ -121,8 +121,6 @@ $(document).on('click', '#save-student', function () {
                 description: description,
                 year: year
             };
-            console.log('Sua')
-            console.log( pram);
             ajaxJSON.put(url, pram, true,
                 function (data) {
                     location.reload();
@@ -136,8 +134,6 @@ $(document).on('click', '#save-student', function () {
                 description: description,
                 year: year
             };
-            console.log('Them')
-            console.log(pram1);
             ajaxJSON.post(url, pram1, true,
                 function (data) {
                     if (data == '0') {
@@ -146,8 +142,6 @@ $(document).on('click', '#save-student', function () {
                     }
                     else {
                         location.reload();
-                        /*loadData();
-                        clearDataModal();*/
                         $('#modal > div > div > div.modal-footer > button.btn.btn-default.pull-left').trigger('click')
                     }
                 })
@@ -162,7 +156,7 @@ $(document).on('click', '#save-student', function () {
 
 })
 $( "#delete-student" ).click(function() {
-    var url1 = '/semester/'+sessionStorage.getItem('ID');
+    var url1 = '/manager/semester/'+sessionStorage.getItem('ID');
     console.log(url1);
     ajaxJSON.delete(url1, undefined,true,
         function (data) {

@@ -22,18 +22,17 @@ public class SemesterController {
         return new ModelAndView("semester_management");
     }
 
-    @PostMapping(value = "/semester")
+    @PostMapping(value = "/manager/semester")
     @ResponseBody
     public Semester add(@RequestBody Semester semester) {
         return semesterService.addOrUpdateSemester(semester);
     }
-    @DeleteMapping(value = "/semester/{id}")
+    @DeleteMapping(value = "/manager/semester/{id}")
     public ResponseEntity delete(@PathVariable(value = "id")long id) {
-        System.out.println("delete: " + id);
         semesterService.deleteSemester(id);
         return ResponseEntity.ok().build();
     }
-    @PutMapping(value = "/semester")
+    @PutMapping(value = "/manager/semester")
     @ResponseBody
     public Semester update(@RequestBody Semester semester) {
         Semester old = semesterService.getSemesterById(semester.getId());

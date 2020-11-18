@@ -98,9 +98,7 @@ $(document).on('click', '#save-student', function () {
         var phone = $('#phone').val();
         var password = $('#password').val();
         var major_id = $('#major_id').val();
-        var role_id = $('#role_id').val();
-        var id = $('#id').val();
-        var url = '/student';
+        var url = '/manager/student';
         if (mode == 2) {
             var StudentID = sessionStorage.getItem('ID');
             var pram = {
@@ -112,20 +110,14 @@ $(document).on('click', '#save-student', function () {
                 phone:phone,
                 password: password,
                 major_id: major_id,
-                role_id:role_id
+                role_id:2
             };
-            console.log('Sua')
-            console.log( pram);
             ajaxJSON.put(url, pram, true,
                 function (data) {
-                    location.reload();
-                    /*loadData();
-                    clearDataModal();*/
-                    $('#modal > div > div > div.modal-footer > button.btn.btn-default.pull-left').trigger('click')
+                    window.location.replace('/student');
                 })
         } else {
             var pram1 = {
-                id: id,
                 student_code : student_code,
                 last_name: last_name,
                 first_name: first_name,
@@ -133,22 +125,11 @@ $(document).on('click', '#save-student', function () {
                 phone:phone,
                 password: password,
                 major_id: major_id,
-                role_id:role_id
+                role_id:2
             };
-            console.log('Them')
-            console.log(pram1);
             ajaxJSON.post(url, pram1, true,
                 function (data) {
-                    if (data == '0') {
-                        $('#StudentCode').val('')
-                        $('#StudentCode').attr('placeholder', 'Mã sinh viên bị trùng')
-                    }
-                    else {
-                        location.reload();
-                        /*loadData();
-                        clearDataModal();*/
-                        $('#modal > div > div > div.modal-footer > button.btn.btn-default.pull-left').trigger('click')
-                    }
+                    window.location.replace('/student');
                 })
         }
 
@@ -161,14 +142,11 @@ $(document).on('click', '#save-student', function () {
 
 })
 $( "#delete-student" ).click(function() {
-    var url1 = '/student/'+sessionStorage.getItem('ID');
+    var url1 = '/manager/student/'+sessionStorage.getItem('ID');
     console.log(url1);
     ajaxJSON.delete(url1, undefined,true,
         function (data) {
             location.reload();
-            /*loadData();
-            clearDataModal();*/
-            $('#modal > div > div > div.modal-footer > button.btn.btn-default.pull-left').trigger('click')
         })
 });
 $('#DSSV').change(function (evt) {
