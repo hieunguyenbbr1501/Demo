@@ -120,38 +120,30 @@ $(document).on('click', '#save-subject', function () {
     let flag = checkDataInputModal();
 
     if (flag === 1) {
+        var student = {
+        }
 
-        var SubjectCode = $('#SubjectCode').val();
-        var SubjectName = $('#SubjectName').val();
-        var Credit = $('#Credit').val();
-        var url = '/manager/subject';
-        var pram = [];
-        pram.push(SubjectCode);
-        pram.push(SubjectName);
-        pram.push(Credit);
         if (mode == 2) {
-            debugger
-            var SubjectID = $('tr.Selected').data('ID');
-            pram.push(SubjectID)
-            ajaxJSON.put(url, pram, true,
+            var id = $('tr.Selected').data('id');
+            student = {
+                id: id,
+                code: $('#code').val(),
+                name: $('#name').val(),
+                major: $('#major').val()
+            }
+            ajaxJSON.put('/subject/update', student, true,
                 function (data) {
-                    loadData();
-                    clearDataModal();
-                    $('#modal > div > div > div.modal-footer > button.btn.btn-default.pull-left').trigger('click')
+                    window.location.replace('/subject');
                 })
         } else {
-            ajaxJSON.post(url, pram, true,
-                function (data) {
-                    if (data == '0') {
-                        $('#SubjectCode').val('')
-                        $('#SubjectCode').attr('placeholder', 'Mã môn học bị trùng')
-                    }
-                    else {
-                        loadData();
-                        clearDataModal();
-                        $('#modal > div > div > div.modal-footer > button.btn.btn-default.pull-left').trigger('click')
-                    }
-                })
+            student = {
+                code: $('#code').val(),
+                name: $('#name').val(),
+                major: $('#major').val()
+            }
+            ajaxJSON.post('/subject/insert', student, function () {
+                window.location.replace('/subject');
+            })
         }
 
     }

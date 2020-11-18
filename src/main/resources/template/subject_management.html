@@ -329,10 +329,10 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="u, index:${subjects}">
+                        <tr th:each="u, index:${subjects}" th:data-id="${u.id}">
                             <td th:text="${index.count}"></td>
                             <td th:text="${u.name}"></td>
-                            <td th:text="${u.subject_code}"></td>
+                            <td th:text="${u.code}"></td>
                             <td th:text="${u.major.name}"></td>
                         </tr>
                         </tbody>
@@ -354,20 +354,21 @@
                             <div class="form-group">
                                 <label>Mã môn học</label>
                                 <div class="form-control">
-                                    <input id="SubjectCode" property="StudentCode" placeholder="">
+                                    <input id="code" property="code" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Tên môn học</label>
                                 <div class="form-control">
-                                    <input id="SubjectName" property="StudentCode" placeholder="">
+                                    <input id="name" property="name" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Số tín chỉ</label>
-                                <div class="form-control">
-                                    <input id="Credit" property="StudentCode" placeholder="">
-                                </div>
+                                <label>Chuyên ngành</label>
+                                    <select name="major" id="major" class="form-control" property="major">
+                                        <option th:each="major, index: ${majors}" th:value="${major.id}" th:text="${major.name}">
+                                        </option>
+                                    </select>
                             </div>
                         </div>
                         <div class="modal-footer">

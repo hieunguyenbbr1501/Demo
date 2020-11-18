@@ -18,7 +18,7 @@ public class Subject {
     private Long id;
 
     @Column(name = "subject_code")
-    private String subject_code;
+    private String code;
 
     @Column(name = "name")
     private String name;
