@@ -20,6 +20,7 @@ public class SemesterService {
     }
 
     public Semester addOrUpdateSemester(Semester semester) {
+        semester.setCreated(new Date());
         semester.setUpdated(new Date());
         return semesterRepository.save(semester);
     }

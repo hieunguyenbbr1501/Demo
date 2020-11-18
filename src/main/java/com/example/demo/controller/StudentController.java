@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 
+import java.util.List;
+
 @Controller
 public class StudentController {
 
@@ -20,11 +22,13 @@ public class StudentController {
     public String redirect() {
         return "redirect:/student";
     }
+
     @GetMapping(value = "/student")
     public ModelAndView index(Model model) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("student_management");
-        model.addAttribute("students", userService.getAllStudents() );
+        List<User> students = userService.getAllStudents();
+        model.addAttribute("students", students);
         return new ModelAndView("student_management");
     }
 
@@ -33,12 +37,14 @@ public class StudentController {
     public User add(@RequestBody User user) {
         return userService.addOrUpdateUser(user);
     }
+
     @DeleteMapping(value = "/student/{id}")
-    public ResponseEntity delete(@PathVariable(value = "id")long id) {
+    public ResponseEntity delete(@PathVariable(value = "id") long id) {
         System.out.println("delete: " + id);
         userService.deleteUser(id);
         return ResponseEntity.ok().build();
     }
+
     @PutMapping(value = "/student")
     @ResponseBody
     public User update(@RequestBody User user) {

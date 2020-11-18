@@ -2,7 +2,7 @@
 const loadData = () => {
     ajaxJSON.get('/student', undefined, true,
         (res) => {
-            let table = $('<table id="studentTable" class="table table-bordered table-striped"> \
+let table = $('<table id="studentTable" class="table table-bordered table-striped"> \
                                  <thead > \
                                     <tr> \
                                         <th>STT</th>\
@@ -16,25 +16,7 @@ const loadData = () => {
                                     </tr> \
                                  </thead > \
                            </table >');
-            let tbody = $('<tbody></tbody>');
-            $.each(res, (index, item) => {
-                let tr = $('<tr> \
-                                <td>'+ (index + 1) + '</td> \
-                                <td>'+ item.last_name + '</td> \
-                                <td>'+ item.first_name + '</td> \
-                                <td>'+ item.student_code + '</td> \
-                                <td>'+ item.email + '</td> \
-                                <td>'+ item.phone + '</td> \
-                                <td>'+ item.major_id + '</td> \
-                                <td>'+ item.role_id + '</td> \
-                           </tr > ').data('ID', item.id);
-                tbody.append(tr);
-            });
 
-            table.append(tbody);
-
-            $('.studentTable').empty();
-            $('.studentTable').append(table);
 
             $('#studentTable').DataTable({
                 "language": {

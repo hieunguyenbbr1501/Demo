@@ -23,6 +23,7 @@ public class UserService {
     }
 
     public User addOrUpdateUser(User user) {
+        user.setCreated(new Date());
         user.setUpdated(new Date());
         return userRepository.save(user);
     }
