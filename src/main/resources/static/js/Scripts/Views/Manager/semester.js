@@ -1,4 +1,4 @@
-﻿
+
 const loadData = () => {
     ajaxJSON.get('/student', undefined, true,
         (res) => {
@@ -109,28 +109,17 @@ $(document).on('click', '#save-student', function () {
     let flag = checkDataInputModal();
 
     if (flag === 1) {
-        var student_code = $('#student_code').val();
-        var last_name = $('#last_name').val();
-        var first_name = $('#first_name').val();
-        var email = $('#email').val();
-        var phone = $('#phone').val();
-        var password = $('#password').val();
-        var major_id = $('#major_id').val();
-        var role_id = $('#role_id').val();
-        var id = $('#id').val();
-        var url = '/student';
+        var name = $('#name').val();
+        var description = $('#description').val();
+        var year = $('#year').val();
+        var url = '/semester';
         if (mode == 2) {
-            var StudentID = sessionStorage.getItem('ID');
+            var ID = sessionStorage.getItem('ID');
             var pram = {
-                id: StudentID,
-                student_code : student_code,
-                last_name: last_name,
-                first_name: first_name,
-                email: email,
-                phone:phone,
-                password: password,
-                major_id: major_id,
-                role_id:role_id
+                id: ID,
+                name : name,
+                description: description,
+                year: year
             };
             console.log('Sua')
             console.log( pram);
@@ -143,15 +132,9 @@ $(document).on('click', '#save-student', function () {
                 })
         } else {
             var pram1 = {
-                id: id,
-                student_code : student_code,
-                last_name: last_name,
-                first_name: first_name,
-                email: email,
-                phone:phone,
-                password: password,
-                major_id: major_id,
-                role_id:role_id
+                name : name,
+                description: description,
+                year: year
             };
             console.log('Them')
             console.log(pram1);
@@ -179,7 +162,7 @@ $(document).on('click', '#save-student', function () {
 
 })
 $( "#delete-student" ).click(function() {
-    var url1 = '/student/'+sessionStorage.getItem('ID');
+    var url1 = '/semester/'+sessionStorage.getItem('ID');
     console.log(url1);
     ajaxJSON.delete(url1, undefined,true,
         function (data) {
