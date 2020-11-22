@@ -3,7 +3,7 @@ pipeline {
   environment {
     dockerImage = ''
       registry = "hieu1501/demo"
-      registryCredential = 'dockerhub'
+      registryCredential = 'dockerhub-id-password'
   }
   agent any
   stages {
