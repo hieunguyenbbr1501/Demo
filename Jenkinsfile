@@ -12,22 +12,29 @@ pipeline {
         git 'https://github.com/hieunguyenbbr1501/Demo.git'
       }
     }
+    stage('Gradle build') {
+        sh 'gradle build'
+    }
     stage('Build Image') {
-            if (env.BRANCH_NAME == "master") {
-                dockerImage = docker.build("demo")
+        when {
+            branch 'master'
+        }
+        steps{
+            script {
+                dockerImage = docker.build registry + ":$BUILD_NUMBER"
             }
+        }
     }
     stage('Deploy Image') {
-              if (env.BRANCH_NAME == "master") {
-                  docker.withRegistry(registryCredential) {
-                          dockerImage.push()
-                  }
-              }
+        when { branch 'master' }
+              script {
+                        dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                      }
     }
     stage('Remove Unused docker image') {
-        if (env.BRANCH_NAME == "master") {
-            sh "docker rmi $registry:$BUILD_NUMBER"
-        }
+        when { branch 'master' }
+
+        sh "docker rmi $registry:$BUILD_NUMBER"
     }
   }
 }
