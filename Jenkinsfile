@@ -29,9 +29,11 @@ pipeline {
     }
     stage('Deploy Image') {
         when { branch 'master' }
-              script {
-                        dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                      }
+        steps {
+            script {
+                dockerImage = docker.build registry + ":$BUILD_NUMBER"
+            }
+        }
     }
     stage('Remove Unused docker image') {
         when { branch 'master' }
