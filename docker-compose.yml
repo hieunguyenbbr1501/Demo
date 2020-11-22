@@ -1,0 +1,30 @@
+version: '3.1'
+services:
+  app:
+    container_name: demo
+    image: demo
+    build: ./
+    ports:
+      - "8081:8081"
+    depends_on:
+      - dbmysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=demo
+      - MYSQL_USER=debian-sys-maint
+      - MYSQL_PASSWORD=hustle123
+  dbmysql:
+    image: mysql
+    build:
+      context: .
+    ports:
+      - "3307:3307"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=demo
+      - MYSQL_USER=debian-sys-maint
+      - MYSQL_PASSWORD=hustle123
+networks:
+  demo-network:
+    external:
+      name: demo-network
