@@ -20,7 +20,7 @@ node {
 
   stage('Build Image') {
         if (env.BRANCH_NAME == "master") {
-            dockerImage = docker.build registry + ":$BUILD_NUMBER"
+            dockerImage = docker.build(demo)
         }
   }
 
