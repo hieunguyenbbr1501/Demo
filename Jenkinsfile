@@ -19,11 +19,26 @@ node {
   }
 
   stage('Build Image') {
-    if (env.BRANCH_NAME == "master") {
-        dockerImage = docker.build registry + ":$BUILD_NUMBER"
-        dockerImage.push()
+    steps {
+        if (env.BRANCH_NAME == "master") {
+            script {
+            dockerImage = docker.build registry + ":$BUILD_NUMBER"
+            }
+        }
     }
   }
+
+  stage('Deploy Image') {
+      steps {
+          if (env.BRANCH_NAME == "master") {
+              script {
+              docker.withRegistry( '', registryCredential ) {
+                      dockerImage.push()
+                    }
+              }
+          }
+      }
+    }
 
   stage('Remove Unused docker image') {
     steps{
