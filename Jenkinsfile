@@ -19,12 +19,11 @@ node {
   }
 
   stage('Build Image') {
-    when {
-    branch 'master'
-    }
-    steps {
-        dockerImage = docker.build registry + ":$BUILD_NUMBER"
-        dockerImage.push()
+    if (env.BRANCH_NAME == "master") {
+        steps {
+            dockerImage = docker.build registry + ":$BUILD_NUMBER"
+            dockerImage.push()
+        }
     }
   }
 
