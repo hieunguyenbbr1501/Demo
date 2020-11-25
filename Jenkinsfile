@@ -14,7 +14,7 @@ pipeline {
     }
     stage('Gradle build') {
         steps {
-            sh 'gradle build'
+            sh 'gradle assemble'
         }
     }
     stage('Build Image') {
@@ -33,6 +33,7 @@ pipeline {
             script {
                 docker.withRegistry( '', registryCredential ) {
                     dockerImage.push()
+                    dockerImage.push("lastest")
                 }
             }
         }
