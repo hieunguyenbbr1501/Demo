@@ -6,11 +6,8 @@ const loadData = () => {
                                  <thead > \
                                     <tr> \
                                         <th>STT</th> \
-                                        <th>Học kỳ</th> \
-                                        <th>Mô tả</th> \
-                                        <th>Năm học</th> \
-                                        <th>Ngày tạo</th> \
-                                        <th>Ngày sửa</th> \
+                                        <th>Tên kỳ thi</th> \
+                                        <th>Năm học</th> \
                                     </tr> \
                                  </thead > \
                            </table >');
@@ -19,11 +16,8 @@ const loadData = () => {
             $.each(res, (index, item) => {
                 let tr = $('<tr> \
                                 <td>'+ (index + 1) + '</td> \
-                                <td>'+ item.Name + '</td> \
-                                <td>'+ item.Description + '</td> \
-                                <td>'+ item.Year + '</td> \
-                                <td>'+ item.Created + '</td> \
-                                <td>'+ item.Updated + '</td> \
+                                <td>'+ item.ExamName + '</td> \
+                                <td>'+ item.ExamYear + '</td> \
                            </tr > ').data('ID', item.ExamID);
                 tbody.append(tr);
             });
@@ -52,7 +46,29 @@ const loadData = () => {
                     }
                 }
             });
-            
+            //$('#examTable').DataTable({
+            //    initComplete: function () {
+            //        this.api().columns().every(function () {
+            //            var column = this;
+            //            var select = $('<select class="form-control filter-table" style="width: 100%;"><option value=""></option></select>')
+            //                .appendTo($(column.footer()).empty())
+            //                .on('change', function () {
+            //                    var val = $.fn.dataTable.util.escapeRegex(
+            //                        $(this).val()
+            //                    );
+
+            //                    column
+            //                        .search(val ? '^' + val + '$' : '', true, false)
+            //                        .draw();
+            //                });
+
+            //            column.data().unique().sort().each(function (d, j) {
+            //                select.append('<option value="' + d + '">' + d + '</option>');
+            //            });
+            //        });
+            //    }
+            //});
+            //$('.filter-table').select2();
         });
 };
 

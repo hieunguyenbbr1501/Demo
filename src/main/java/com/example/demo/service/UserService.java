@@ -5,6 +5,8 @@ import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,8 +22,10 @@ public class UserService {
         return userRepository.getAllLecturers();
     }
 
-    public void addOrUpdateUser(User user) {
-        userRepository.save(user);
+    public User addOrUpdateUser(User user) {
+        user.setCreated(new Date());
+        user.setUpdated(new Date());
+        return userRepository.save(user);
     }
 
     public void deleteUser(Long id) {
@@ -30,6 +34,13 @@ public class UserService {
 
     public User getUserByEmail(String email) {
         return userRepository.getUserByEmail(email);
+    }
+
+    public User getUserById(Long id) {
+        if (userRepository.findById(id).isPresent()) {
+            return userRepository.findById(id).get();
+        }
+        return null;
     }
 
 }

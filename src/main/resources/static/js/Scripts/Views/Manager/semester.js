@@ -1,8 +1,8 @@
-﻿
+
 const loadData = () => {
     ajaxJSON.get('/student', undefined, true,
         (res) => {
-let table = $('<table id="studentTable" class="table table-bordered table-striped"> \
+            let table = $('<table id="studentTable" class="table table-bordered table-striped"> \
                                  <thead > \
                                     <tr> \
                                         <th>STT</th>\
@@ -16,7 +16,25 @@ let table = $('<table id="studentTable" class="table table-bordered table-stripe
                                     </tr> \
                                  </thead > \
                            </table >');
+            let tbody = $('<tbody></tbody>');
+            $.each(res, (index, item) => {
+                let tr = $('<tr> \
+                                <td>'+ (index + 1) + '</td> \
+                                <td>'+ item.last_name + '</td> \
+                                <td>'+ item.first_name + '</td> \
+                                <td>'+ item.student_code + '</td> \
+                                <td>'+ item.email + '</td> \
+                                <td>'+ item.phone + '</td> \
+                                <td>'+ item.major_id + '</td> \
+                                <td>'+ item.role_id + '</td> \
+                           </tr > ').data('ID', item.id);
+                tbody.append(tr);
+            });
 
+            table.append(tbody);
+
+            $('.studentTable').empty();
+            $('.studentTable').append(table);
 
             $('#studentTable').DataTable({
                 "language": {
@@ -60,7 +78,7 @@ var mode = 1
 
 $(document).on('click', 'button.btn.btn-success.pull-right', function () {
     mode = 1;
-    $('#modal .modal-title').text('THÊM SINH VIÊN');
+    $('#modal .modal-title').text('THÊM HỌC KỲ');
     clearDataModal();
     $('#StudentCode').removeAttr('placeholder');
     $('#StudentCode').attr('readonly', false)
@@ -70,7 +88,7 @@ $(document).on('click', 'button.btn.btn-warning.pull-right', function () {
     sessionStorage.setItem('ID', ID);
     $('#StudentCode').attr('readonly', true)
     mode = 2;
-    $('#modal .modal-title').text('CHỈNH SỬA THÔNG TIN SINH VIÊN');
+    $('#modal .modal-title').text('CHỈNH SỬA THÔNG TIN HỌC KỲ');
     $('.modal-body [property]').each((index, item) => {
         $(item).val($('tr.Selected').children()[index + 1].innerText)
     })
@@ -91,45 +109,41 @@ $(document).on('click', '#save-student', function () {
     let flag = checkDataInputModal();
 
     if (flag === 1) {
-        var student_code = $('#student_code').val();
-        var last_name = $('#last_name').val();
-        var first_name = $('#first_name').val();
-        var email = $('#email').val();
-        var phone = $('#phone').val();
-        var password = $('#password').val();
-        var major_id = $('#major_id').val();
-        var url = '/manager/student';
+        var name = $('#name').val();
+        var description = $('#description').val();
+        var year = $('#year').val();
+        var url = '/manager/semester';
         if (mode == 2) {
-            var StudentID = sessionStorage.getItem('ID');
+            var ID = sessionStorage.getItem('ID');
             var pram = {
-                id: StudentID,
-                student_code : student_code,
-                last_name: last_name,
-                first_name: first_name,
-                email: email,
-                phone:phone,
-                password: password,
-                major_id: major_id,
-                role_id:2
+                id: ID,
+                name : name,
+                description: description,
+                year: year
             };
             ajaxJSON.put(url, pram, true,
                 function (data) {
-                    window.location.replace('/student');
+                    location.reload();
+                    /*loadData();
+                    clearDataModal();*/
+                    $('#modal > div > div > div.modal-footer > button.btn.btn-default.pull-left').trigger('click')
                 })
         } else {
             var pram1 = {
-                student_code : student_code,
-                last_name: last_name,
-                first_name: first_name,
-                email: email,
-                phone:phone,
-                password: password,
-                major_id: major_id,
-                role_id:2
+                name : name,
+                description: description,
+                year: year
             };
             ajaxJSON.post(url, pram1, true,
                 function (data) {
-                    window.location.replace('/student');
+                    if (data == '0') {
+                        $('#StudentCode').val('')
+                        $('#StudentCode').attr('placeholder', 'Mã sinh viên bị trùng')
+                    }
+                    else {
+                        location.reload();
+                        $('#modal > div > div > div.modal-footer > button.btn.btn-default.pull-left').trigger('click')
+                    }
                 })
         }
 
@@ -142,11 +156,14 @@ $(document).on('click', '#save-student', function () {
 
 })
 $( "#delete-student" ).click(function() {
-    var url1 = '/manager/student/'+sessionStorage.getItem('ID');
+    var url1 = '/manager/semester/'+sessionStorage.getItem('ID');
     console.log(url1);
     ajaxJSON.delete(url1, undefined,true,
         function (data) {
             location.reload();
+            /*loadData();
+            clearDataModal();*/
+            $('#modal > div > div > div.modal-footer > button.btn.btn-default.pull-left').trigger('click')
         })
 });
 $('#DSSV').change(function (evt) {
