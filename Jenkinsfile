@@ -14,7 +14,7 @@ pipeline {
     }
     stage('Gradle build') {
         steps {
-            sh 'gradle assemble'
+            sh 'gradle build'
         }
     }
     stage('Build Image') {
