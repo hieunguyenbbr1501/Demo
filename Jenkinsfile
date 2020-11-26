@@ -10,6 +10,7 @@ pipeline {
     stage('Cloning Git') {
       steps {
         git 'https://github.com/hieunguyenbbr1501/Demo.git'
+        sh 'git checkout ' + ${env.BRANCH_NAME}
       }
     }
     stage('Gradle build') {
