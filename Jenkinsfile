@@ -4,13 +4,13 @@ pipeline {
     dockerImage = ''
       registry = "hieu1501/demo"
       registryCredential = 'dockerhub-id-password'
+      githubCredential = 'github-credential'
   }
   agent any
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/hieunguyenbbr1501/Demo.git'
-        git branch: '${branchToBuild}', url: 'https://github.com/hieunguyenbbr1501/Demo.git'
+        git branch: '${branchToBuild}', url: 'https://github.com/hieunguyenbbr1501/Demo.git', credentialsId: 'github-credential'
       }
     }
     stage('Gradle build') {
