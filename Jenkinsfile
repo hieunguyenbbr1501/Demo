@@ -10,7 +10,7 @@ pipeline {
     stage('Cloning Git') {
       steps {
         git 'https://github.com/hieunguyenbbr1501/Demo.git'
-        git branch: '${branchToBuild}'
+        git branch: '${branchToBuild}', url: 'https://github.com/hieunguyenbbr1501/Demo.git'
       }
     }
     stage('Gradle build') {
